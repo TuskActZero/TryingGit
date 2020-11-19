@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>area de miembro</title>
+  </head>
+  <body>
+    <h2 style="background-color: springgreen;">Area para miembro</h2>
+    <p style="background-color: steelblue;">
+       Bienvenido <b> {{request.user.username}} </b>,
+       esta pagina es exclusiva para usuario registrados.
+    </p>
+    <hr />
+    <a href="/logout"> Cerrar sesion </a>
+    <br >
+    <form method="POST">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <button type="submit" > crear </button>
+      </form>
+        <h2>Lista de personas</h2>
+        <ul>
+        {% for persona in personas %}
+            <li>{{persona.nombre}}, {{persona.edad}} años</li>
+        {% endfor %}
+        </ul>
+        <form action="/" method="POST">
+            Edad mínima: 
+            <input type="number" name="edad" value="0" style="width:40px" / >
+            <input type="submit" value="Filtrar">
+            {% csrf_token %}
+        </form> 
+      <ul>
+          {% for persona in personas %}
+          <li>
+              {{ persona.nombre }}, {{ persona.edad }} años
+              <a href="/edit/{{ persona.id }}"> editar </a>
+          </li>
+          {% endfor %}
+      </ul>
+      <ul>
+          {% for persona in personas %}
+          <li>
+              {{ persona.nombre }}, {{ persona.edad }} años
+              <a href="/edit/{{ persona.id }}">Editar</a>
+              <a href="/delete/{{ persona.id }}" 
+                onClick="return confirm('¿Seguro que quieres borrar a {{persona.nombre}}?');">
+                  Borrar
+              </a>
+          </li>
+          {% endfor %}
+      </ul>
+  </body>
+</html>

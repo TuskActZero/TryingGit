@@ -1,0 +1,27 @@
+<html>
+<body>
+    <h2>Lista de personas</h2>
+
+    <ul>
+    {% for persona in personas %}
+    	<li>{{persona.nombre}}, {{persona.edad}} años</li>
+    {% endfor %}
+    </ul>
+    <body>
+        <h2>Lista de personas</h2>
+    
+        <ul>
+        {% for persona in personas %}
+            <li>{{persona.nombre}}, {{persona.edad}} años</li>
+        {% endfor %}
+        </ul>
+    
+        <form action="/" method="POST">
+            Edad mínima: 
+            <input type="number" name="edad" value="0" style="width:40px" / >
+            <input type="submit" value="Filtrar">
+            {% csrf_token %}
+        </form>
+    </body>
+</body>
+</html>

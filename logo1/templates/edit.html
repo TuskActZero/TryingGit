@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>adit pipol</title>
+    </head>
+    <body>
+        <form method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit" > edit </button>
+        </form>
+        <ul>
+            {% for persona in personas %}
+            <li>
+                {{ persona.nombre }}, {{ persona.edad }} años
+                <a href="/edit/{{ persona.id }}"> editar </a>
+            </li>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for persona in personas %}
+            <li>
+                {{ persona.nombre }}, {{ persona.edad }} años
+                <a href="/edit/{{ persona.id }}">Editar</a>
+                <a href="/delete/{{ persona.id }}" 
+                  onClick="return confirm('¿Seguro que quieres borrar a {{persona.nombre}}?');">
+                    Borrar
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

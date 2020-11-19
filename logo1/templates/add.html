@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>add pipol</title>
+    </head>
+    <body>
+        <form method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit" > crear </button>
+        </form>
+    </body>
+</html>
